@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Marco Rapone — Developer Portfolio</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+        rel="stylesheet" />
+  <script type="module" crossorigin src="./assets/main-CM7NsAZO.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/main-DJYh4RIf.css">
+</head>
+
+<body>
+
+    <!-- CURSORE CUSTOM -->
+    <div id="cursor-dot"></div>
+    <div id="cursor-ring"></div>
+
+    <!-- LOADER -->
+    <div id="loader">
+        <a href="index.html">
+            <div class="loader-logo">MC_</div>
+        </a>
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        <div class="loading-text" id="loading-text">inizializzazione...</div>
+    </div>
+
+    <canvas id="matrix-canvas"></canvas>
+
+    <!-- HEADER -->
+    <nav>
+        <div class="logo">MR_</div>
+        <div class="nav-links">
+            <a href="#about">Chi sono</a>
+            <a href="#projects">Progetti</a>
+            <a href="#technologies">Tecnologie</a>
+            <a href="#journey">Percorso</a>
+            <a href="#contact">Contatti</a>
+        </div>
+        <div class="nav-socials">
+            <a href="https://www.instagram.com/marco_rapone_/" target="_blank" rel="noopener" class="nav-social-link"
+                aria-label="Instagram">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/marco-rapone-a7bb403b7/" target="_blank" rel="noopener"
+                class="nav-social-link" aria-label="LinkedIn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                </svg>
+            </a>
+            <a href="https://github.com/marcorpn96-wq" target="_blank" rel="noopener" class="nav-social-link"
+                aria-label="GitHub">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                </svg>
+            </a>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <div class="mobile-menu" id="mobile-menu">
+        <button class="mobile-close" id="mobile-close">✕</button>
+        <a href="#about" class="mobile-link">Chi sono</a>
+        <a href="#projects" class="mobile-link">Progetti</a>
+        <a href="#technologies" class="mobile-link">Tecnologie</a>
+        <a href="#journey" class="mobile-link">Percorso</a>
+        <a href="#contact" class="mobile-link">Contatti</a>
+    </div>
+
+    <!-- HERO -->
+    <section id="hero">
+        <div class="hero-glow"></div>
+        <div class="hero-glow-2"></div>
+        <div class="hero-inner">
+            <div class="hero-content">
+                <div class="hero-label">Disponibile per lavori freelance e full-time</div>
+                <h1>Costruisco <span class="highlight">esperienze<br />digitali</span><br />che contano.</h1>
+                <p class="hero-subtitle">// Sviluppatore full-stack di Pescara, appassionato di interfacce curate e
+                    codice
+                    pulito. Pronto a trasformare le tue idee in realtà.</p>
+                <div class="hero-actions">
+                    <a href="#projects" class="btn-primary"><span>Guarda i miei progetti</span><span>→</span></a>
+                    <a href="#contact" class="btn-ghost"><span>Contattami</span></a>
+                    <a href="cv/Marco_Rapone_CV.pdf" download class="btn-cv"
+                        aria-label="Scarica CV"><span>⬇</span><span>Scarica CV</span></a>
+                </div>
+            </div>
+            <div class="orbit-wrap" id="orbit-wrap">
+                <div class="orbit-ring orbit-ring-1"></div>
+                <div class="orbit-ring orbit-ring-2"></div>
+                <div class="orbit-ring orbit-ring-3"></div>
+                <div class="orbit-avatar">👨‍💻</div>
+                <!-- Orbit cards -->
+                <div class="orbit-card orbit-card-1"><span class="orbit-icon">🌐</span> HTML5</div>
+                <div class="orbit-card orbit-card-2"><span class="orbit-icon">🎨</span> CSS3</div>
+                <div class="orbit-card orbit-card-3"><span class="orbit-icon">⚡</span> JavaScript</div>
+                <div class="orbit-card orbit-card-4"><span class="orbit-icon">🐘</span> PHP</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CHI SONO -->
+    <section id="about">
+        <div class="reveal">
+            <div class="section-label">// Su di me</div>
+            <h2 class="section-title" data-text="Chi sono">Chi sono</h2>
+        </div>
+        <div class="about-grid">
+            <div class="avatar-container reveal">
+                <div class="about-avatar">
+                    <video autoplay muted playsinline loop
+                        style="width:100%;height:100%;object-fit:cover;display:block;">
+                        <source src="./img/video/hf_20260314_131748_f2ca2a28-fed7-44c8-b9a9-bd9acdd5ec31.mp4"
+                            type="video/mp4">
+                    </video>
+                </div>
+                <div class="about-badge">
+                    <div class="badge-num">100%</div>
+                    <div class="badge-text">Passione per<br />il codice</div>
+                </div>
+            </div>
+            <div class="about-text reveal reveal-delay-1">
+                <h3>Marco Rapone</h3>
+                <p>Sono uno sviluppatore Full-Stack Developer, finito da poco la scuola Alta Formazione InfoBasic. Sono
+                    nuovo per quanto riguarda il mondo dello sviluppo web con tanta voglia di imparare e crescere. Mi
+                    appassiona ogni aspetto della creazione digitale: dal design dell'interfaccia fino alla logica del
+                    server.</p>
+                <p>Quando non scrivo codice mi piace esplorare nuove tecnologie, seguire tutorial, sperimentare progetti
+                    personali e — perché no — godermi una passeggiata sul lungomare di Pescara con la testa già piena di
+                    idee per il prossimo progetto.</p>
+                <div class="about-stats">
+                    <div class="stat-card">
+                        <div class="stat-value">🔥</div>
+                        <div class="stat-label">Sempre in formazione</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">💡</div>
+                        <div class="stat-label">Idee & soluzioni</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">🚀</div>
+                        <div class="stat-label">// lavori selezionati</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROGETTI -->
+    <section id="projects">
+        <div class="reveal">
+            <div class="section-label">// I miei lavori</div>
+            <h2 class="section-title" data-text="Progetti">Progetti</h2>
+            <p class="section-sub">Alcune delle cose su cui ho lavorato — dall'idea al prodotto finale.</p>
+        </div>
+        <div class="projects-grid">
+            <div class="project-card reveal" data-title="BRIEF — Maschere da sci" data-tags="HTML,CSS,JavaScript"
+                data-img="img/1.webp"
+                data-desc="Anni di ricerca e sviluppo hanno portato alla creazione della maschera da sci più tecnologicamente avanzata mai realizzata. Ogni componente è stato progettato per offrire prestazioni eccezionali in condizioni estreme, dal design aerodinamico al sistema di ventilazione integrato. Il sito presenta il prodotto in modo accattivante con animazioni CSS fluide, sezioni scroll-triggered e una UI che rispecchia il brand premium del cliente."
+                data-highlights="Animazioni CSS3|Design responsive|UI Premium|Ottimizzato per SEO"
+                data-live="https://rapone363.netsons.org/sito-brief/index.html" data-source="#">
+                <div class="project-image c1"><img src="./img/1.webp"></div>
+                <div class="project-body">
+                    <div class="project-tags"><span class="tag">Html</span><span class="tag">CSS</span><span
+                            class="tag">JS</span></div>
+                    <div class="project-title">BRIEF - Maschere da scii</div>
+                    <div class="project-description">Anni di ricerca e sviluppo hanno portato alla creazione della
+                        maschera da sci più tecnologicamente avanzata mai realizzata. Ogni componente è stato progettato
+                        per offrire prestazioni eccezionali in condizioni estreme.</div>
+                    <div class="project-links"><a href="#" class="project-link">↗ Visita il sito</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card reveal reveal-delay-1" data-title="BRIEF — Forno, Pane e Nicchia"
+                data-tags="WordPress" data-img="img/2.webp"
+                data-desc="Il profumo del pane caldo, la pazienza della lievitazione naturale, la genuinità di ogni giorno. Un sito WordPress costruito su misura per un forno artigianale locale: vetrina dei prodotti, storytelling del brand, gestione degli ordini e integrazione con Google Maps. Il design caldo e autentico riflette i valori del forno."
+                data-highlights="WordPress Custom|WooCommerce|Design artigianale|Google Maps integrato"
+                data-live="https://rapone363.netsons.org/wordpress/Home/" data-source="#">
+                <div class="project-image c2"><img src="./img/2.webp"></div>
+                <div class="project-body">
+                    <div class="project-tags"><span class="tag">WordPress</span></div>
+                    <div class="project-title">BRIEF - Forno, Pane e Nicchia</div>
+                    <div class="project-description">Il profumo del pane caldo, la pazienza della lievitazione
+                        naturale, la genuinità di ogni giorno.</div>
+                    <div class="project-links"><a href="#" class="project-link">↗ Visita il sito</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card reveal reveal-delay-2" data-title="Escape Room" data-tags="HTML,CSS,JavaScript"
+                data-img="img/logo-sito-ridimensionato.png"
+                data-desc="Gioco interattivo di Escape Room sviluppato interamente in HTML, CSS e JavaScript vanilla. Il giocatore deve risolvere enigmi, trovare indizi e ragionare fuori dagli schemi per riuscire a fuggire dalla stanza prima che il tempo scada. Logica di gioco strutturata, interfaccia immersiva e gestione dello stato lato client."
+                data-highlights="JavaScript Vanilla|Logica di gioco|UI Immersiva|Responsive"
+                data-live="https://marcorpn96-wq.github.io/Escape-Room/" data-source="#">
+                <div class="project-image c3"><img src="./img/Escape-Room.jpg"></div>  
+                <div class="project-body">
+                    <div class="project-tags"><span class="tag">Html</span><span class="tag">CSS</span><span
+                            class="tag">JS</span></div>
+                    <div class="project-title">Escape Room</div>
+                    <div class="project-description">Gioco interattivo browser-based: risolvi enigmi e trova la via di
+                        fuga prima che il tempo scada.</div>
+                    <div class="project-links"><a href="https://marcorpn96-wq.github.io/Escape-Room/"
+                            class="project-link" target="_blank" rel="noopener">↗ Gioca ora</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- TECNOLOGIE -->
+    <section id="technologies">
+        <div class="reveal">
+            <div class="section-label">// strumenti & tecnologie</div>
+            <h2 class="section-title" data-text="Tech Stack">Tech Stack</h2>
+            <p class="section-sub">Le tecnologie con cui lavoro per costruire siti e applicazioni web moderne.</p>
+        </div>
+        <div class="reveal reveal-delay-1">
+            <div class="tech-category">Linguaggi & Tecnologie</div>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="tech-icon">🌐</div>
+                    <div class="tech-name">HTML5</div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">🎨</div>
+                    <div class="tech-name">CSS3</div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">⚡</div>
+                    <div class="tech-name">JavaScript</div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">🐘</div>
+                    <div class="tech-name">PHP</div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">🗄️</div>
+                    <div class="tech-name">MySQL</div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">🔵</div>
+                    <div class="tech-name">WordPress</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PERCORSO -->
+    <section id="journey">
+        <div class="reveal">
+            <div class="section-label">// storia & crescita</div>
+            <h2 class="section-title" data-text="Il mio percorso">Il mio percorso</h2>
+            <p class="section-sub">Da curioso del digitale a sviluppatore full-stack — ogni step ha contato.</p>
+        </div>
+
+        <div class="timeline-wrap reveal reveal-delay-1">
+            <div class="timeline-line" id="timeline-line"></div>
+
+            <!-- Step 1 -->
+            <div class="timeline-item timeline-left">
+                <div class="timeline-node">
+                    <div class="timeline-node-inner">🎓</div>
+                </div>
+                <div class="timeline-card">
+                    <div class="timeline-date">2017</div>
+                    <div class="timeline-category">Formazione</div>
+                    <h3 class="timeline-title">Diploma di Maturità</h3>
+                    <p class="timeline-description">Concluso il percorso scolastico con la voglia di trasformare la
+                        passione
+                        per la tecnologia in una carriera concreta.</p>
+                    <div class="timeline-tags">
+                        <span class="timeline-tag">💡 Curiosità</span>
+                        <span class="timeline-tag">🔍 Ricerca</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="timeline-item timeline-right">
+                <div class="timeline-node">
+                    <div class="timeline-node-inner">⚡</div>
+                </div>
+                <div class="timeline-card">
+                    <div class="timeline-date">2024-2027</div>
+                    <div class="timeline-category">Formazione</div>
+                    <h3 class="timeline-title">InfoBasic Alta Formazione</h3>
+                    <p class="timeline-description">Iscrizione al corso Full-Stack Developer. Primi passi seri con HTML,
+                        CSS,
+                        JavaScript, PHP e MySQL. La scintilla che ha acceso tutto.</p>
+                    <div class="timeline-tags">
+                        <span class="timeline-tag">HTML/CSS</span>
+                        <span class="timeline-tag">JavaScript</span>
+                        <span class="timeline-tag">PHP</span>
+                        <span class="timeline-tag">React</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="timeline-item timeline-left">
+                <div class="timeline-node">
+                    <div class="timeline-node-inner">💻</div>
+                </div>
+                <div class="timeline-card">
+                    <div class="timeline-date">2025</div>
+                    <div class="timeline-category">Progetto</div>
+                    <h3 class="timeline-title">BRIEF — Maschere da sci</h3>
+                    <p class="timeline-description">Primo sito web completo: landing page per un brand premium di
+                        maschere da
+                        sci. Animazioni CSS, design responsive e attenzione maniacale ai dettagli.</p>
+                    <div class="timeline-tags">
+                        <span class="timeline-tag">HTML</span>
+                        <span class="timeline-tag">CSS3</span>
+                        <span class="timeline-tag">JavaScript</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="timeline-item timeline-right">
+                <div class="timeline-node">
+                    <div class="timeline-node-inner">🍞</div>
+                </div>
+                <div class="timeline-card">
+                    <div class="timeline-date">2025</div>
+                    <div class="timeline-category">Progetto</div>
+                    <h3 class="timeline-title">Forno Pane e Nicchia</h3>
+                    <p class="timeline-description">Sito WordPress completo per un forno artigianale locale. Temi
+                        custom,
+                        WooCommerce, integrazione Google Maps e storytelling visivo del brand.</p>
+                    <div class="timeline-tags">
+                        <span class="timeline-tag">WordPress</span>
+                        <span class="timeline-tag">WooCommerce</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="timeline-item timeline-left">
+                <div class="timeline-node">
+                    <div class="timeline-node-inner">🔐</div>
+                </div>
+                <div class="timeline-card">
+                    <div class="timeline-date">2026</div>
+                    <div class="timeline-category">Progetto</div>
+                    <h3 class="timeline-title">Escape Room</h3>
+                    <p class="timeline-description">Gioco interattivo browser-based sviluppato in JavaScript vanilla. Il giocatore risolve enigmi e trova indizi per fuggire dalla stanza prima che il tempo scada. Logica di gioco strutturata e UI immersiva senza librerie esterne.</p>
+                    <div class="timeline-tags">
+                        <span class="timeline-tag">HTML</span>
+                        <span class="timeline-tag">CSS3</span>
+                        <span class="timeline-tag">JavaScript</span>
+                    </div>
+                </div>
+            </div>
+
+            
+
+            <!-- Step 6 — Now -->
+            <div class="timeline-item timeline-right timeline-now">
+                <div class="timeline-node timeline-node-current">
+                    <div class="timeline-node-inner">🚀</div>
+                    <div class="timeline-pulse"></div>
+                </div>
+                <div class="timeline-card timeline-card-current">
+                    <div class="timeline-date">2026 — Ora</div>
+                    <div class="timeline-category">In corso</div>
+                    <h3 class="timeline-title">Disponibile & in crescita</h3>
+                    <p class="timeline-description">Aperto a opportunità freelance e full-time. Studio continuo, nuovi
+                        progetti
+                        in cantiere e tanta voglia di fare cose belle con chi ha le idee giuste.</p>
+                    <div class="timeline-tags">
+                        <span class="timeline-tag timeline-tag-glow">✨ Open to work</span>
+                        <span class="timeline-tag">Freelance</span>
+                        <span class="timeline-tag">Full-time</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 6 -->
+            <div class="timeline-item timeline-left">
+                <div class="timeline-node">
+                    <div class="timeline-node-inner">🎓</div>
+                </div>
+                <div class="timeline-card">
+                    <div class="timeline-date">2027</div>
+                    <div class="timeline-category">Certificazione</div>
+                    <h3 class="timeline-title">Diploma Full-Stack Developer</h3>
+                    <p class="timeline-description">Completato il percorso InfoBasic con il diploma ufficiale.
+                        Conoscenze
+                        consolidate su React, Node.js e approccio full-stack allo sviluppo web moderno.</p>
+                    <div class="timeline-tags">
+                        <span class="timeline-tag">React</span>
+                        <span class="timeline-tag">Node.js</span>
+                        <span class="timeline-tag">Full-Stack</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- CONTATTI -->
+    <section id="contact">
+        <div class="reveal">
+            <div class="section-label">// contatti</div>
+            <h2 class="section-title" data-text="Lavoriamo insieme">Lavoriamo insieme</h2>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-info reveal">
+                <p>Hai un progetto in mente o vuoi semplicemente fare due chiacchiere? Sono sempre disponibile per nuove
+                    opportunità, sia freelance che full-time. Scrivimi!</p>
+                <div class="contact-list">
+                    <div class="contact-item">
+                        <span class="item-icon">✉️</span>
+                        <div class="item-text">
+                            <div class="item-label">Email</div>
+                            <a href="mailto:marcorpn96@gmail.com" class="item-value">marcorpn96@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="item-icon">💬</span>
+                        <div class="item-text">
+                            <div class="item-label">Chiamami o scrivimi</div>
+                            <div class="item-value">+39 3759931699</div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="item-icon">📍</span>
+                        <div class="item-text">
+                            <div class="item-label">Location</div>
+                            <div class="item-value">Pescara, Italy</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form reveal reveal-delay-1">
+                <div class="form-group"><label>NOME</label><input type="text" placeholder="Your name" /></div>
+                <div class="form-group"><label>EMAIL</label><input type="email" placeholder="your@email.com" /></div>
+                <div class="form-group"><label>MESSAGGIO</label><textarea
+                        placeholder="Tell me about your project..."></textarea></div>
+                <div class="btn-primary" style="align-self:flex-start;cursor:pointer">Invia Messaggio →</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Marco Rapone. Built with ☕ and too many late nights.</p>
+        <p>Designed in Html e CSS · Coded by hand</p>
+    </footer>
+
+
+    <!-- MODALE PROGETTO -->
+    <div id="project-modal">
+        <div class="modal-backdrop" id="modal-backdrop"></div>
+        <div class="modal-container" id="modal-container">
+            <button class="modal-close" id="modal-close">✕</button>
+            <div id="modal-media"></div>
+            <div class="modal-body">
+                <div class="modal-tags" id="modal-tags"></div>
+                <div class="modal-title" id="modal-title"></div>
+                <div class="modal-description" id="modal-description"></div>
+                <div class="modal-highlights" id="modal-highlights"></div>
+                <div class="modal-actions" id="modal-actions"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PULSANTE SCROLL TO TOP -->
+    <button id="scroll-to-top" class="scroll-to-top" aria-label="Torna su">↑</button>
+
+</body>
+
+</html>
