@@ -120,8 +120,7 @@
                 <div class="about-avatar">
                     <video autoplay muted playsinline loop
                         style="width:100%;height:100%;object-fit:cover;display:block;">
-                        <source src="./img/video/Generated Video September 21, 2026 - 5_35PM.mp4"
-                            type="video/mp4">
+                        <source src="./img/video/Generated Video September 21, 2026 - 5_35PM.mp4" type="video/mp4">
                     </video>
                 </div>
                 <div class="about-badge">
@@ -177,7 +176,8 @@
                     <div class="project-description">Anni di ricerca e sviluppo hanno portato alla creazione della
                         maschera da sci più tecnologicamente avanzata mai realizzata. Ogni componente è stato progettato
                         per offrire prestazioni eccezionali in condizioni estreme.</div>
-                    <div class="project-links"><a href="https://rapone363.netsons.org/sito-brief/index.html" class="project-link">↗ Guarda ora</a>
+                    <div class="project-links"><a href="https://rapone363.netsons.org/sito-brief/index.html"
+                            class="project-link">↗ Guarda ora</a>
                     </div>
                 </div>
             </div>
@@ -192,7 +192,8 @@
                     <div class="project-title">BRIEF - Forno, Pane e Nicchia</div>
                     <div class="project-description">Il profumo del pane caldo, la pazienza della lievitazione
                         naturale, la genuinità di ogni giorno.</div>
-                    <div class="project-links"><a href="https://rapone363.netsons.org/wordpress/Home/" class="project-link">↗ Mangia ora</a>
+                    <div class="project-links"><a href="https://rapone363.netsons.org/wordpress/Home/"
+                            class="project-link">↗ Mangia ora</a>
                     </div>
                 </div>
             </div>
@@ -201,10 +202,10 @@
                 data-desc="Gioco interattivo di Escape Room sviluppato interamente in HTML, CSS e JavaScript vanilla. Il giocatore deve risolvere enigmi, trovare indizi e ragionare fuori dagli schemi per riuscire a fuggire dalla stanza prima che il tempo scada. Logica di gioco strutturata, interfaccia immersiva e gestione dello stato lato client."
                 data-highlights="JavaScript Vanilla|Logica di gioco|UI Immersiva|Responsive"
                 data-live="https://marcorpn96-wq.github.io/Escape-Room/" data-source="#">
-                <div class="project-image c3"><img src="./img/Escape-Room.jpg"></div>  
+                <div class="project-image c3"><img src="./img/Escape-Room.jpg"></div>
                 <div class="project-body">
-                    <div class="project-tags"><span class="tag">Html</span><span class="tag">Tailwind CSS</span><span class="tag">Vite</span><span class="tag">CSS</span><span
-                    class="tag">JS</span></div>
+                    <div class="project-tags"><span class="tag">Html</span><span class="tag">Tailwind CSS</span><span
+                            class="tag">Vite</span><span class="tag">CSS</span><span class="tag">JS</span></div>
                     <div class="project-title">Escape Room</div>
                     <div class="project-description">Gioco interattivo browser-based: risolvi enigmi e trova la via di
                         fuga prima che il tempo scada.</div>
@@ -354,7 +355,9 @@
                     <div class="timeline-date">2026</div>
                     <div class="timeline-category">Progetto</div>
                     <h3 class="timeline-title">Escape Room</h3>
-                    <p class="timeline-description">Gioco interattivo browser-based sviluppato in JavaScript vanilla. Il giocatore risolve enigmi e trova indizi per fuggire dalla stanza prima che il tempo scada. Logica di gioco strutturata e UI immersiva senza librerie esterne.</p>
+                    <p class="timeline-description">Gioco interattivo browser-based sviluppato in JavaScript vanilla. Il
+                        giocatore risolve enigmi e trova indizi per fuggire dalla stanza prima che il tempo scada.
+                        Logica di gioco strutturata e UI immersiva senza librerie esterne.</p>
                     <div class="timeline-tags">
                         <span class="timeline-tag">HTML</span>
                         <span class="timeline-tag">CSS3</span>
@@ -363,7 +366,7 @@
                 </div>
             </div>
 
-            
+
 
             <!-- Step 6 — Now -->
             <div class="timeline-item timeline-right timeline-now">
@@ -430,7 +433,7 @@
                     <div class="contact-item">
                         <span class="item-icon">💬</span>
                         <div class="item-text">
-                            <div class="item-label">Chiamami o scrivimi</div>
+                            <div class="item-label">Chiamami o scrivimi (whatsapp)</div>
                             <div class="item-value">+39 3759931699</div>
                         </div>
                     </div>
@@ -443,13 +446,23 @@
                     </div>
                 </div>
             </div>
-            <div class="contact-form reveal reveal-delay-1">
-                <div class="form-group"><label>NOME</label><input type="text" placeholder="Your name" /></div>
-                <div class="form-group"><label>EMAIL</label><input type="email" placeholder="your@email.com" /></div>
-                <div class="form-group"><label>MESSAGGIO</label><textarea
-                        placeholder="Tell me about your project..."></textarea></div>
-                <div class="btn-primary" style="align-self:flex-start;cursor:pointer">Invia Messaggio →</div>
-            </div>
+            <form class="contact-form reveal reveal-delay-1" action="https://formspree.io/f/xjykwkwo" method="POST">
+                <div class="form-group">
+                    <label>NOME</label>
+                    <input type="text" name="name" placeholder="Your name" required />
+                </div>
+                <div class="form-group">
+                    <label>EMAIL</label>
+                    <input type="email" name="email" placeholder="your@email.com" required />
+                </div>
+                <div class="form-group">
+                    <label>MESSAGGIO</label>
+                    <textarea name="message" placeholder="Tell me about your project..." required></textarea>
+                </div>
+                <button type="submit" class="btn-primary"
+                    style="align-self:flex-start; cursor:pointer; border:none; font-family:inherit; font-size:inherit;">Invia
+                    Messaggio →</button>
+            </form>
         </div>
     </section>
 
