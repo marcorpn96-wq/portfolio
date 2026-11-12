@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="it" translate="no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="google" content="notranslate">
+<title>JARVIS — demo</title>
+<link rel="stylesheet" href="stile.css">
+</head>
+<body data-tema="blu" data-stato="attesa">
+<div id="avviso-demo">DEMO · risposte preparate e dati inventati, niente è collegato a un PC vero · <a href="../">← torna al portfolio</a></div>
+
+<canvas id="universo" aria-hidden="true"></canvas>
+<canvas id="sfondo-effetti" aria-hidden="true"></canvas>
+<div id="sfondo" aria-hidden="true"></div>
+
+<!-- intro -->
+<div id="intro" hidden>
+  <h1 id="intro-titolo">J.A.R.V.I.S</h1>
+  <p id="intro-sottotitolo">JUST A RATHER VERY INTELLIGENT SYSTEM</p>
+  <div id="intro-anello"><span></span></div>
+  <p id="intro-fase">INITIALIZING</p>
+  <div id="intro-barra"><div id="intro-avanzamento"></div></div>
+  <p id="intro-percentuale">0%</p>
+  <div id="intro-punti"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+</div>
+
+<!-- avviso quando la finestra non è collegata -->
+<div id="scollegato" hidden>
+  <div class="vetro scheda-avviso">
+    <h2>Finestra non collegata</h2>
+    <p>Chiudi questa finestra e riapri Jarvis dall'icona vicino all'orologio (oppure riavvialo).</p>
+  </div>
+</div>
+
+<div id="app">
+
+  <!-- colonna sinistra -->
+  <aside id="colonna-sinistra">
+    <section class="vetro pannello" id="pannello-meteo">
+      <header class="titolo-pannello"><span>Meteo</span><small id="meteo-aggiornato"></small></header>
+      <div id="meteo-principale">
+        <svg id="meteo-icona" viewBox="0 0 64 64" aria-hidden="true"></svg>
+        <div>
+          <div id="meteo-temperatura">--</div>
+          <div id="meteo-descrizione">in arrivo…</div>
+        </div>
+      </div>
+      <div id="meteo-dettagli"></div>
+      <div id="meteo-ore"></div>
+      <div id="meteo-giorni"></div>
+    </section>
+
+    <section class="vetro pannello cresce" id="pannello-ricordi">
+      <header class="titolo-pannello"><span>Ricordi</span><small id="ricordi-numero"></small></header>
+      <ol id="ricordi-elenco" class="elenco"></ol>
+      <header class="titolo-pannello secondario" id="promemoria-titolo" hidden><span>Promemoria</span></header>
+      <ul id="promemoria-elenco" class="elenco"></ul>
+      <div id="liste-sezioni"></div>
+    </section>
+  </aside>
+
+  <!-- centro -->
+  <main id="centro">
+    <header id="testata">
+      <div>
+        <h1 id="marchio">J.A.R.V.I.S.</h1>
+        <p id="data"></p>
+      </div>
+      <div id="orologio">--:--:--</div>
+    </header>
+
+    <section id="scena">
+      <canvas id="reattore"></canvas>
+      <div id="etichetta-stato">IN ATTESA</div>
+    </section>
+
+    <section class="vetro" id="registro-cornice">
+      <div id="registro" aria-live="polite"></div>
+      <div id="conferma" hidden>
+        <p id="conferma-testo"></p>
+        <div>
+          <button class="pulsante pieno verde" id="conferma-si">Sì, procedi</button>
+          <button class="pulsante contorno" id="conferma-no">No</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="allegati" hidden>
+      <div id="allegati-elenco"></div>
+      <div id="allegati-azioni">
+        <button class="pulsante piccolo" data-richiesta="Riassumi in modo chiaro il contenuto dei file allegati.">Riassumi</button>
+        <button class="pulsante piccolo" data-richiesta="Analizza insieme tutti i file allegati: confronta i contenuti ed evidenzia collegamenti, somiglianze e differenze.">Confronta</button>
+        <button class="pulsante piccolo" data-richiesta="Traduci in italiano il contenuto dei file allegati (se è già in italiano, traducilo in inglese).">Traduci</button>
+        <button class="pulsante piccolo" data-richiesta="Spiega in modo semplice cosa contengono i file allegati e quali sono i punti importanti.">Spiega</button>
+      </div>
+    </section>
+
+    <form id="ingresso" autocomplete="off">
+      <button type="button" class="tondo" id="pulsante-allega" title="Allega file o immagini">
+        <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+      </button>
+      <input type="file" id="scelta-file" multiple hidden>
+      <input type="text" id="campo" placeholder="Scrivi a Jarvis…" maxlength="20000" spellcheck="false">
+      <button type="button" class="tondo" id="pulsante-microfono" title="Parla (microfono)">
+        <svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+      </button>
+      <button type="submit" class="tondo pieno" id="pulsante-invia" title="Invia">
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+      <button type="button" class="tondo" id="pulsante-zitto" title="Zittisci solo la voce (la richiesta continua)">
+        <svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M17 9l5 6M22 9l-5 6"/></svg>
+      </button>
+      <button type="button" class="pulsante pieno ambra" id="pulsante-stop" title="Annulla la richiesta in corso (e la voce)">STOP</button>
+    </form>
+
+    <nav id="azioni">
+      <button class="pulsante" data-comando="/briefing">Briefing</button>
+      <button class="pulsante" data-comando="/mail">Mail</button>
+      <button class="pulsante" data-comando="che tempo fa oggi?">Meteo</button>
+      <button class="pulsante" data-comando="/notizie">Notizie</button>
+      <button class="pulsante" data-comando="/agenda">Agenda</button>
+      <button class="pulsante" data-comando="/promemoria">Promemoria</button>
+      <button class="pulsante" data-comando="/memoria">Ricordi</button>
+      <button class="pulsante ambra-testo" data-comando="/annulla">Annulla</button>
+      <div class="contenitore-menu">
+        <button class="pulsante" id="pulsante-altro" type="button">Altro ▾</button>
+        <div class="vetro menu" id="menu-altro" hidden>
+          <button data-comando="/stato">Stato del PC</button>
+          <button data-comando="/schermo">Guarda lo schermo</button>
+          <button data-comando="/webcam">Guarda con la webcam</button>
+          <hr>
+          <span class="voce-titolo">Testo copiato (appunti)</span>
+          <button data-comando="/appunti riassumi">Riassumi</button>
+          <button data-comando="/appunti traduci">Traduci</button>
+          <button data-comando="/appunti spiega">Spiega</button>
+          <button data-comando="/appunti correggi">Correggi</button>
+          <hr>
+          <button data-comando="/argomenti">Argomenti che seguo</button>
+          <button data-comando="/argomenti ora">Novità sugli argomenti ora</button>
+          <button data-comando="/monitor">Monitor PC acceso/spento</button>
+          <button data-comando="/plugin">Plugin installati</button>
+          <button data-comando="/voce">Cambia voce</button>
+          <button data-comando="/telefono">Collega il telefono (QR)</button>
+        </div>
+      </div>
+    </nav>
+  </main>
+
+  <!-- colonna destra -->
+  <aside id="colonna-destra">
+    <section class="vetro pannello" id="pannello-sistema">
+      <header class="titolo-pannello"><span>Sistema</span></header>
+      <dl id="sistema" hidden>
+        <div><dt>Stato</dt><dd id="sistema-stato">in attesa</dd></div>
+        <div hidden><dt>Mail</dt><dd id="sistema-mail">0</dd></div>
+        <div hidden><dt>Ricordi</dt><dd id="sistema-ricordi">0</dd></div>
+        <div hidden><dt>Promemoria</dt><dd id="sistema-promemoria">0</dd></div>
+      </dl>
+      <div id="interruttori">
+        <button class="interruttore" id="interruttore-voce" data-acceso="true"><span>Voce</span><i></i></button>
+        <button class="interruttore" id="interruttore-conferme" data-acceso="true"><span>Conferme</span><i></i></button>
+        <button class="interruttore" id="interruttore-ascolto" data-acceso="false"><span>Ascolto continuo</span><i></i></button>
+        <button class="interruttore" id="interruttore-effetti" data-acceso="true"><span>Effetti</span><i></i></button>
+      </div>
+      <div id="temi">
+        <span>Tema</span>
+        <button class="tema" data-tema="blu" title="Blu"></button>
+        <button class="tema" data-tema="rosso" title="Rosso"></button>
+        <button class="tema" data-tema="minimale" title="Minimale"></button>
+        <button class="pulsante piccolo" id="pulsante-pulisci">Pulisci chat</button>
+      </div>
+      <header class="titolo-pannello secondario"><span>Sistemi</span><small id="sistemi-riepilogo"></small></header>
+      <ul id="sistemi-elenco"></ul>
+    </section>
+
+    <section class="vetro pannello" id="pannello-pc">
+      <header class="titolo-pannello"><span>Stato PC</span><small id="pc-carica"></small></header>
+      <div id="pc-batteria">
+        <div class="pc-riga"><span>Batteria</span><b id="pc-batteria-valore">--</b></div>
+        <div class="pc-barra"><i id="pc-batteria-barra"></i></div>
+      </div>
+      <div class="pc-riga"><span>Processore</span><b id="pc-cpu-valore">--</b></div>
+      <div class="pc-barra"><i id="pc-cpu-barra"></i></div>
+      <div class="pc-riga"><span>Memoria</span><b id="pc-ram-valore">--</b></div>
+      <div class="pc-barra"><i id="pc-ram-barra"></i></div>
+      <div class="pc-riga"><span>Disco libero</span><b id="pc-disco-valore">--</b></div>
+      <div class="pc-riga" id="pc-gpu-riga" hidden><span>Scheda video</span><b id="pc-gpu-valore">--</b></div>
+    </section>
+  </aside>
+</div>
+
+<!-- QR per collegare il telefono -->
+<div id="velo-qr" hidden>
+  <div class="vetro scheda-qr">
+    <h2>Collega il telefono</h2>
+    <img id="qr-immagine" alt="QR code">
+    <p>Inquadra il QR con la fotocamera del telefono</p>
+    <p id="qr-indirizzo"></p>
+    <p id="qr-codice"></p>
+    <button class="pulsante pieno" id="qr-chiudi">Chiudi</button>
+  </div>
+</div>
+
+<div id="trascina" hidden><div>Rilascia qui i file per allegarli</div></div>
+
+<div class="staffa" id="staffa-a" aria-hidden="true"></div><div class="staffa" id="staffa-b" aria-hidden="true"></div>
+<div class="staffa" id="staffa-c" aria-hidden="true"></div><div class="staffa" id="staffa-d" aria-hidden="true"></div>
+<canvas id="sopra-effetti" aria-hidden="true"></canvas>
+<script src="demo.js"></script>
+<script src="app.js"></script>
+<script src="effetti.js"></script>
+</body>
+</html>
