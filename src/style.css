@@ -410,7 +410,7 @@ body.cursor-section-contact #cursor-ring {
   --accent2: #c084fc;
   --cyan: #22d3ee;
   --text: #e8e8f0;
-  --muted: #8888a8;
+  --muted: #ffffff;
   --radius: 0px;
 }
 
@@ -430,7 +430,7 @@ body {
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.4;
+  opacity: 0.3;
 }
 
 #chi-sono,
